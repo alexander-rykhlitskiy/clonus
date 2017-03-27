@@ -23,7 +23,9 @@ class LogEntriesFetcher
       `git fetch #{@hov_remote}`
       `git checkout #{@hov_remote}/master`
       d = LogEntry::DELIMITER
-      `git log --pretty=format:"%h#{d}%an#{d}%ci#{d}%s" -#{LOG_LINES_NUMBER}`
+      # https://git-scm.com/docs/pretty-formats
+      # TODO: add %N (commit notes). It's complicated, because it can contain multiple lines.
+      `git log --pretty=format:"%h#{d}%an#{d}%ci#{d}%s %b" -#{LOG_LINES_NUMBER}`
     end
   end
 end
