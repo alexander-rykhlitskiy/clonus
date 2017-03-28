@@ -14,7 +14,11 @@ log_entries.sort_by(&:time).chunk(&:ticket).each do |ticket, entries_group|
   found_tickets << ticket
   printf("#{Color.green(ticket)}\n")
   entries_group.each do |log_entry|
-    printf("#{Color.red('%10s')} %-12s #{Color.pink('%s')} %s\n", *log_entry.human_attributes)
+    updated_gems = nil
+    Dir.chdir(cashman_directory) do
+      updated_gems = `git show #{log_entry.commit_hash} | grep gem`.split("\n").select { |l| l.start_with?('+') }
+    end
+    printf("#{Color.red('%10s')} %-12s #{Color.pink('%s')} %s\n %s \n", *log_entry.human_attributes, updated_gems)
   end
 end
 
