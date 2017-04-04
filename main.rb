@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 cashman_directory = ARGV[0]
 hov_remote = ARGV[1]
 curl_request = ARGV[2..-1]
