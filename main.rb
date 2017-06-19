@@ -23,4 +23,4 @@ end
 found_tickets.uniq!
 puts "#{found_tickets.length} tickets were found."
 not_found_tickets = release_tickets - found_tickets
-puts "#{not_found_tickets.length} tickets were not found: #{not_found_tickets.join(', ')}."
+puts "#{not_found_tickets.length} tickets were not found: #{not_found_tickets.join(', ')}"

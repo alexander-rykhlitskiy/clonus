@@ -22,7 +22,7 @@ class LogEntriesFetcher
   def fetch_log
     Dir.chdir(@cashman_directory) do
       `git fetch #{@hov_remote}`
-      `git checkout #{@hov_remote}/master`
+      `git checkout #{@hov_remote}/production`
       d = LogEntry::ATTRS_DELIMITER
       # https://git-scm.com/docs/pretty-formats
       `git log --pretty=format:"%h#{d}%an#{d}%ci#{d}%s \n %b %N #{ENTRIES_DELIMITER}" -#{LOG_LINES_NUMBER}`
